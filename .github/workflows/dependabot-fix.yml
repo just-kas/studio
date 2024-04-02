@@ -10,7 +10,7 @@
 name: Dependabot
 
 on:
-  - pull_request_target
+  pull_request:
 
 jobs:
   fix:
@@ -25,14 +25,12 @@ jobs:
       YARN_ENABLE_SCRIPTS: false
 
     steps:
-      - run: echo ${{ secrets.FOXGLOVEBOT_GITHUB_TOKEN }}
       - uses: actions/checkout@v4.1.1
         with:
           # Using a Personal Access Token here is required to trigger workflows on our new commit.
           # The default GitHub token doesn't trigger any workflows.
           # See: https://github.community/t/push-from-action-does-not-trigger-subsequent-action/16854/2
           # token: ${{ secrets.FOXGLOVEBOT_GITHUB_TOKEN }}
-          token: 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
           ref: ${{ github.event.pull_request.head.ref }}
       
       - run: git lfs pull --include .yarn/
@@ -60,23 +58,23 @@ jobs:
           git commit -m '[dependabot skip] Fix yarn.lock' --allow-empty
           git push
 
-      - uses: octokit/request-action@v2.1.9
-        if: contains(fromJSON('["opened", "reopened"]'), github.event.action)
-        env:
-          GITHUB_TOKEN: ${{ secrets.FOXGLOVEBOT_GITHUB_TOKEN }}
-        with:
-          route: POST /repos/{owner_and_repo}/pulls/{pull_number}/reviews
-          owner_and_repo: ${{ github.repository }}
-          pull_number: ${{ github.event.pull_request.number }}
-          event: "APPROVE"
+      # - uses: octokit/request-action@v2.1.9
+      #   if: contains(fromJSON('["opened", "reopened"]'), github.event.action)
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.FOXGLOVEBOT_GITHUB_TOKEN }}
+      #   with:
+      #     route: POST /repos/{owner_and_repo}/pulls/{pull_number}/reviews
+      #     owner_and_repo: ${{ github.repository }}
+      #     pull_number: ${{ github.event.pull_request.number }}
+      #     event: "APPROVE"
 
-      - uses: octokit/request-action@v2.1.9
-        if: contains(fromJSON('["opened", "reopened"]'), github.event.action)
-        env:
-          GITHUB_TOKEN: ${{ secrets.FOXGLOVEBOT_GITHUB_TOKEN }}
-        with:
-          route: POST /repos/{owner_and_repo}/issues/{pull_number}/comments
-          owner_and_repo: ${{ github.repository }}
-          pull_number: ${{ github.event.pull_request.number }}
-          # two quotes are needed to avoid a syntax error when running the action
-          body: "'@dependabot squash and merge'"
+      # - uses: octokit/request-action@v2.1.9
+      #   if: contains(fromJSON('["opened", "reopened"]'), github.event.action)
+      #   env:
+      #     GITHUB_TOKEN: ${{ secrets.FOXGLOVEBOT_GITHUB_TOKEN }}
+      #   with:
+      #     route: POST /repos/{owner_and_repo}/issues/{pull_number}/comments
+      #     owner_and_repo: ${{ github.repository }}
+      #     pull_number: ${{ github.event.pull_request.number }}
+      #     # two quotes are needed to avoid a syntax error when running the action
+      #     body: "'@dependabot squash and merge'"
