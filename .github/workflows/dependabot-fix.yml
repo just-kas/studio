@@ -25,6 +25,7 @@ jobs:
       YARN_ENABLE_SCRIPTS: false
 
     steps:
+      - run: echo ${{ secrets.FOXGLOVEBOT_GITHUB_TOKEN }}
       - uses: actions/checkout@v4.1.1
         with:
           # Using a Personal Access Token here is required to trigger workflows on our new commit.
@@ -32,9 +33,9 @@ jobs:
           # See: https://github.community/t/push-from-action-does-not-trigger-subsequent-action/16854/2
           token: ${{ secrets.FOXGLOVEBOT_GITHUB_TOKEN }}
           ref: ${{ github.event.pull_request.head.ref }}
-
+      
       - run: git lfs pull --include .yarn/
-
+  
       - run: corepack enable
 
       - uses: actions/setup-node@v4.0.2
