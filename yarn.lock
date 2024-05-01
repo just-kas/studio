@@ -2330,7 +2330,7 @@ __metadata:
     "@foxglove/message-definition": 0.3.1
     "@foxglove/omgidl-parser": 1.0.3
     "@foxglove/omgidl-serialization": 1.0.4
-    "@foxglove/ros2idl-parser": 0.3.2
+    "@foxglove/ros2idl-parser": 0.3.3
     "@foxglove/rosmsg": 4.2.2
     "@foxglove/rosmsg-serialization": 2.0.3
     "@foxglove/rosmsg2-serialization": 2.0.3
@@ -2383,6 +2383,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@foxglove/omgidl-parser@npm:1.0.4":
+  version: 1.0.4
+  resolution: "@foxglove/omgidl-parser@npm:1.0.4"
+  dependencies:
+    tslib: ^2
+  checksum: 035937e77aec9473bd37621a392cba057bf70c789c127ca5e7dac737c522cf8c96923e1ac29515be65dd7aa854350841641569f49b340786d1b8b89e3fbe01fb
+  languageName: node
+  linkType: hard
+
 "@foxglove/omgidl-serialization@npm:1.0.4":
   version: 1.0.4
   resolution: "@foxglove/omgidl-serialization@npm:1.0.4"
@@ -2393,14 +2402,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@foxglove/ros2idl-parser@npm:0.3.2":
-  version: 0.3.2
-  resolution: "@foxglove/ros2idl-parser@npm:0.3.2"
+"@foxglove/ros2idl-parser@npm:0.3.3":
+  version: 0.3.3
+  resolution: "@foxglove/ros2idl-parser@npm:0.3.3"
   dependencies:
     "@foxglove/message-definition": ^0.3.1
-    "@foxglove/omgidl-parser": 1.0.3
+    "@foxglove/omgidl-parser": 1.0.4
     md5-typescript: ^1.0.5
-  checksum: 9ad981467a441798142106eca23d32d3da11878141f59379d66c01e6d1a61c79e0d47e776b0864fa281193b64c6eaf8752df502d0fdea9aac0a89982f0061594
+  checksum: 9607bc8f1314032153603b11a084c03d5b725ae9cdc96d3db9fcc0f17fe7e19f3b9c246bbc9a17444071b7c254ef02b54eabb6a7128ac7f45ef6f167f4274f98
   languageName: node
   linkType: hard
 
